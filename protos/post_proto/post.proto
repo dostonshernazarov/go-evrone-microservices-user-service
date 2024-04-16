@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package post;
+
+service PostService {
+  rpc CreatePost(Post) returns (PostRes);
+  rpc InsertPostData(InsertData) returns (InsertDataRes);
+  rpc GetPostByID(IdRequest) returns (PostRes);
+  rpc UpdatePost(Post) returns (PostRes);
+  rpc GetAllPosts(GetAllPostRequest) returns (GetAllPostRes);
+  rpc DeletePostByID(IdRequest) returns (DeletePostByIDRespons);
+  rpc GetAllPostsByUserID(GetAllPostByUserIDRequest) returns (GetAllPostRes);
+}
+
+message InsertDataRes {
+}
+
+message InsertData {
+  string ok = 1;
+}
+
+message GetAllPostUserRes {
+  repeated PostUserRes posts = 2;
+}
+
+message GetAllPostRes {
+  repeated PostRes posts = 1;
+}
+
+message PostUserRes{
+  string id = 1;
+  string content = 2;
+  string title = 3;
+  int64 like = 4;
+  int64 dislike = 5;
+  int64 view = 6;
+  string category = 7;
+  User user = 8;
+}
+
+
+message User{
+  string id = 1;
+  string full_name = 2;
+  string username = 3;
+  string email = 4;
+  string password = 5;
+  string bio = 6;
+  string website = 7;
+  string role = 8;
+  string refresh_token = 9;
+}
+
+message GetAllPostUserByProductIdReq {
+  string product_id = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+message GetAllPostUserByUserIdReq{
+  string user_id = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+message PostUser {
+  string id = 1;
+  string post_id = 2;
+  string user_id = 3;
+}
+
+message DeletePostByIDRespons{
+  string result = 1;
+}
+
+
+message GetAllPostByUserIDRequest{
+  string user_id = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+message GetAllPostRequest{
+  int64 page = 1;
+  int64 limit = 2;
+}
+
+message IdRequest{
+  string id = 1;
+}
+
+
+
+message Post{
+  string id = 1;
+  string user_id = 2;
+  string content = 3;
+  string title = 4;
+  int64 like = 5;
+  int64 dislike = 6;
+  int64 view = 7;
+  string category = 8;
+}
+
+message PostRes{
+  string id = 1;
+  string user_id = 2;
+  string content = 3;
+  string title = 4;
+  int64 like = 5;
+  int64 dislike = 6;
+  int64 view = 7;
+  string category = 8;
+  string created_at = 9;
+  string updated_at = 10;
+}

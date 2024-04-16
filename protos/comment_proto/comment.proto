@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package comment;
+
+service CommentService {
+  rpc CreateComment(Comment) returns (CommentRes);
+  rpc InsertCommentData(InsertData) returns (InsertDataRes);
+  rpc GetCommentByID(IdRequest) returns (CommentRes);
+  rpc UpdateComment(Comment) returns (CommentRes);
+  rpc GetAllCommentsByPostID(GetAllCommentByPostIDRequest) returns (GetAllCommentRes);
+  rpc GetAllComment(GetAllCommentRequest) returns (GetAllCommentRes);
+  rpc DeleteCommentByID(IdRequest) returns (DeleteCommentByIDRespons);
+}
+
+
+message InsertDataRes {
+}
+
+message InsertData {
+  string ok = 1;
+}
+
+message GetAllCommentByPostIDRequest{
+  int64 page = 1;
+  int64 limit = 2;
+  string post_id = 3;
+}
+
+message DeleteCommentByIDRespons{
+  string result = 1;
+}
+
+message GetAllCommentRes{
+  repeated CommentRes comments = 1;
+}
+
+message GetAllCommentRequest{
+  int64 page = 1;
+  int64 limit = 2;
+}
+
+message IdRequest{
+  string id = 1;
+}
+
+message Comment{
+  string id = 1;
+  string content = 2;
+  string user_id = 3;
+  string post_id = 4;
+}
+
+message CommentRes {
+  string id = 1;
+  string content = 2;
+  string user_id = 3;
+  string post_id = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}

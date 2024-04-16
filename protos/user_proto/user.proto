@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc Create(User) returns (UserRes);
+  //rpc InsertUserdata(InsertData) returns (InsertDataRes);
+  //rpc CheckUniqueEmail(CheckUniqueRequest) returns (CheckUniqueRespons);
+  //rpc GetUserByRfshToken(IdRequest) returns (UserRes);
+  //rpc GetUserByEmail(IdRequest) returns (UserRes);
+  //rpc UpdateUser(User) returns (UserRes);
+  rpc GetUserByID(IdRequest) returns (UserRes);
+  //rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersRespons);
+  rpc DeleteUserByID(IdRequest) returns (DeleteUserByIDRespons);
+}
+
+message InsertDataRes {
+}
+
+message InsertData {
+  string ok = 1;
+}
+
+message GetAllOrderProductRes{
+  User user = 1;
+  repeated Product products = 2;
+}
+
+message GetAllOrderProductReq{
+  string user_id = 1;
+  int64 page = 2;
+  int64 limit = 3;
+}
+
+
+message Product{
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string category = 4;
+  string price = 5;
+  string contact_info = 6;
+}
+
+
+
+message DeleteUserByIDRespons{
+  string result = 1;
+}
+
+message GetAllUsersRespons{
+  repeated UserRes user = 1;
+}
+
+message GetAllUsersRequest{
+  int64 page = 1;
+  int64 limit = 2;
+}
+
+message IdRequest{
+  string id = 1;
+}
+
+message GetUserByRfshTokenRequest{
+  string token = 1;
+}
+
+
+message CheckUniqueResult {
+  int64 result = 1;
+}
+
+message UserRes{
+  string id = 1;
+  string full_name = 2;
+  string username = 3;
+  string email = 4;
+  string password = 5;
+  string bio = 6;
+  string website = 7;
+  string role = 8;
+  string refresh_token = 9;
+  string created_at = 10;
+  string updated_at = 11;
+}
+
+message User{
+  string id = 1;
+  string full_name = 2;
+  string username = 3;
+  string email = 4;
+  string password = 5;
+  string bio = 6;
+  string website = 7;
+  string role = 8;
+  string refresh_token = 9;
+}
+
+message CheckUniqueRespons{
+  bool is_exist = 1;
+}
+
+message CheckUniqueRequest{
+  string column = 1;
+  string value = 2;
+}
