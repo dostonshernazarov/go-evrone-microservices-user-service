@@ -1,8 +1,8 @@
 package main
 
 import (
-	"content_service/internal/app"
-	"content_service/internal/pkg/config"
+	"github/user_service_evrone_microservces/internal/app"
+	"github/user_service_evrone_microservces/internal/pkg/config"
 	"log"
 	"os"
 	"os/signal"

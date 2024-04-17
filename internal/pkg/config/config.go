@@ -51,9 +51,9 @@ func New() *Config {
 	config.DB.Host = getEnv("POSTGRES_HOST", "localhost")
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
-	config.DB.Password = getEnv("POSTGRES_PASSWORD", "123")
+	config.DB.Password = getEnv("POSTGRES_PASSWORD", "doston")
 	config.DB.SslMode = getEnv("POSTGRES_SSLMODE", "disable")
-	config.DB.Name = getEnv("POSTGRES_DATABASE", "test")
+	config.DB.Name = getEnv("POSTGRES_DATABASE", "exam4")
 
 	// otlp collector configuration
 	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")

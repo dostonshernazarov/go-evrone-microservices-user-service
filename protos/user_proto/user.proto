@@ -10,7 +10,7 @@ service UserService {
   //rpc GetUserByEmail(IdRequest) returns (UserRes);
   //rpc UpdateUser(User) returns (UserRes);
   rpc GetUserByID(IdRequest) returns (UserRes);
-  //rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersRespons);
+  rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersRespons);
   rpc DeleteUserByID(IdRequest) returns (DeleteUserByIDRespons);
 }
 

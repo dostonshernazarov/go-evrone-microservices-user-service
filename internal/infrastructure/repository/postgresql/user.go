@@ -2,7 +2,6 @@ package postgresql
 
 import (
 	"github/user_service_evrone_microservces/internal/entity"
-	"github/user_service_evrone_microservces/internal/pkg/otlp"
 	"github/user_service_evrone_microservces/internal/pkg/postgres"
 	"context"
 	"fmt"
@@ -45,8 +44,8 @@ func (p *usersRepo) usersSelectQueryPrefix() squirrel.SelectBuilder {
 }
 
 func (p usersRepo) Create(ctx context.Context, users *entity.Users) error {
-	ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Create")
-	defer span.End()
+	// ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Create")
+	// defer span.End()
 
 	data := map[string]any{
 		"guid":         users.GUID,
@@ -74,8 +73,8 @@ func (p usersRepo) Create(ctx context.Context, users *entity.Users) error {
 }
 
 func (p usersRepo) Get(ctx context.Context, params map[string]string) (*entity.Users, error) {
-	ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Get")
-	defer span.End()
+	// ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Get")
+	// defer span.End()
 
 	var (
 		users entity.Users
@@ -111,8 +110,8 @@ func (p usersRepo) Get(ctx context.Context, params map[string]string) (*entity.U
 }
 
 func (p usersRepo) List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Users, error) {
-	ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"List")
-	defer span.End()
+	// ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"List")
+	// defer span.End()
 
 	var (
 		users []*entity.Users
@@ -168,8 +167,8 @@ func (p usersRepo) List(ctx context.Context, limit, offset uint64, filter map[st
 }
 
 func (p usersRepo) Delete(ctx context.Context, guid string) error {
-	ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Delete")
-	defer span.End()
+	// ctx, span := otlp.Start(ctx, usersServiceName, usersSpanRepoPrefix+"Delete")
+	// defer span.End()
 
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).

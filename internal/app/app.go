@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	pb "github/user_service_evrone_microservces/genproto/user_proto"
+	// pb "github/user_service_evrone_microservces/genproto/user_proto"
 	grpc_server "github/user_service_evrone_microservces/internal/delivery/grpc/server"
 	"github/user_service_evrone_microservces/internal/infrastructure/grpc_service_clients"
 	"github/user_service_evrone_microservces/internal/pkg/config"
@@ -10,6 +10,7 @@ import (
 	"github/user_service_evrone_microservces/internal/pkg/otlp"
 	"github/user_service_evrone_microservces/internal/usecase"
 	"github/user_service_evrone_microservces/internal/pkg/postgres"
+	"github/user_service_evrone_microservces/internal/usecase/event"
 	"time"
 
 
@@ -30,6 +31,7 @@ type App struct {
 	GrpcServer     *grpc.Server
 	ShutdownOTLP   func() error
 	ServiceClients grpc_service_clients.ServiceClients
+	BrokerProducer event.BrokerProducer
 }
 
 func NewApp(cfg *config.Config) (*App, error) {
@@ -101,4 +103,23 @@ func (a *App) Run() error {
 	
 	return nil
 
+}
+func (a *App) Stop() {
+	// close broker producer
+	a.BrokerProducer.Close()
+	// closing client service connections
+	a.ServiceClients.Close()
+	// stop gRPC server
+	a.GrpcServer.Stop()
+
+	// database connection
+	a.DB.Close()
+
+	// shutdown otlp collector
+	if err := a.ShutdownOTLP(); err != nil {
+		a.Logger.Error("shutdown otlp collector", zap.Error(err))
+	}
+
+	// zap logger sync
+	a.Logger.Sync()
 }
