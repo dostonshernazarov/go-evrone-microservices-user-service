@@ -2,12 +2,13 @@ package app
 
 import (
 	"fmt"
-	// pb "github/user_service_evrone_microservces/genproto/user_proto"
+	pb "github/user_service_evrone_microservces/genproto/user_proto"
 	grpc_server "github/user_service_evrone_microservces/internal/delivery/grpc/server"
 	"github/user_service_evrone_microservces/internal/infrastructure/grpc_service_clients"
 	"github/user_service_evrone_microservces/internal/pkg/config"
+	clean_grpc "github/user_service_evrone_microservces/internal/delivery/grpc/services"
 	"github/user_service_evrone_microservces/internal/pkg/logger"
-	"github/user_service_evrone_microservces/internal/pkg/otlp"
+	"github/user_service_evrone_microservces/internal/infrastructure/kafka"
 	"github/user_service_evrone_microservces/internal/usecase"
 	"github/user_service_evrone_microservces/internal/pkg/postgres"
 	"github/user_service_evrone_microservces/internal/usecase/event"
@@ -41,11 +42,13 @@ func NewApp(cfg *config.Config) (*App, error) {
 		return nil, err
 	}
 
+	kafkaProducer := kafka.NewProducer(cfg, logger)
+
 	// otlp collector initialization
-	shutdownOTLP, err := otlp.InitOTLPProvider(cfg)
-	if err != nil {
-		return nil, err
-	}
+	// shutdownOTLP, err := otlp.InitOTLPProvider(cfg)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	// init db
 	db, err := postgres.New(cfg)
@@ -69,15 +72,16 @@ func NewApp(cfg *config.Config) (*App, error) {
 			grpc_server.UnaryInterceptorData(logger),
 		)),
 	)
+
 	return &App{
-		Config:         cfg,
-		Logger:         logger,
-		DB:             db,
-		GrpcServer:     grpcServer,
-		ShutdownOTLP:   shutdownOTLP,
+		Config:     cfg,
+		Logger:     logger,
+		DB:         db,
+		GrpcServer: grpcServer,
+		// ShutdownOTLP:   shutdownOTLP,
+		BrokerProducer: kafkaProducer,
 	}, nil
 }
-
 func (a *App) Run() error {
 	var (
 		contextTimeout time.Duration
@@ -95,15 +99,21 @@ func (a *App) Run() error {
 	}
 	a.ServiceClients = serviceClients
 
-	userRepo := repo.NewUsersRepo(a.DB)
+	// repositories initialization
+	articleRepo := repo.NewUsersRepo(a.DB)
 
 	// usecase initialization
-	_ = usecase.NewUsersService(contextTimeout, userRepo)
+	articleUsecase := usecase.NewUsersService(contextTimeout, articleRepo)
 
-	
+	pb.RegisterUserServiceServer(a.GrpcServer, clean_grpc.NewRPC(a.Logger, articleUsecase, a.BrokerProducer))
+	a.Logger.Info("gRPC Server Listening", zap.String("url", a.Config.RPCPort))
+	if err := grpc_server.Run(a.Config, a.GrpcServer); err != nil {
+		return fmt.Errorf("gRPC fatal to serve grpc server over %s %w", a.Config.RPCPort, err)
+	}
+
 	return nil
-
 }
+
 func (a *App) Stop() {
 	// close broker producer
 	a.BrokerProducer.Close()

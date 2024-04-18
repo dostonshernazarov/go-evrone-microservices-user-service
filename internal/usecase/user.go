@@ -45,6 +45,7 @@ func (u usersService) Create(ctx context.Context, Users *entity.Users) (string, 
 
 	u.beforeRequest(&Users.GUID, &Users.CreatedAt, &Users.UpdatedAt)
 
+	
 	return Users.GUID, u.repo.Create(ctx, Users)
 }
 func (u usersService) Get(ctx context.Context, params map[string]string) (*entity.Users, error) {

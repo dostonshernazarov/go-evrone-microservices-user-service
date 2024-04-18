@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	usersTableName      = "users"
+	usersTableName      = "user_info"
 	usersServiceName    = "usersService"
 	usersSpanRepoPrefix = "usersRepo"
 )
@@ -30,7 +30,7 @@ func NewUsersRepo(db *postgres.PostgresDB) *usersRepo {
 func (p *usersRepo) usersSelectQueryPrefix() squirrel.SelectBuilder {
 	return p.db.Sq.Builder.
 		Select(
-			"guid",
+			"id",
 			"full_name",
 			"username",
 			"email",
