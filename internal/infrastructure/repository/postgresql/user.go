@@ -1,10 +1,11 @@
 package postgresql
 
 import (
+	"context"
+	// "database/sql"
+	"fmt"
 	"github/user_service_evrone_microservces/internal/entity"
 	"github/user_service_evrone_microservces/internal/pkg/postgres"
-	"context"
-	"fmt"
 
 	"github.com/Masterminds/squirrel"
 )
@@ -48,7 +49,7 @@ func (p usersRepo) Create(ctx context.Context, users *entity.Users) error {
 	// defer span.End()
 
 	data := map[string]any{
-		"guid":         users.GUID,
+		"id":         users.GUID,
 		"full_name":      users.FullName,
 		"username":      users.Username,
 		"email":        users.Email,
@@ -63,11 +64,13 @@ func (p usersRepo) Create(ctx context.Context, users *entity.Users) error {
 	if err != nil {
 		return p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
+	// println("\n\n", query)
 
 	_, err = p.db.Exec(ctx, query, args...)
 	if err != nil {
 		return p.db.Error(err)
 	}
+	// println("\n\n", sqlStr.String())
 
 	return nil
 }
@@ -83,7 +86,7 @@ func (p usersRepo) Get(ctx context.Context, params map[string]string) (*entity.U
 	queryBuilder := p.usersSelectQueryPrefix()
 
 	for key, value := range params {
-		if key == "guid" {
+		if key == "id" {
 			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
 		}
 	}
@@ -91,6 +94,8 @@ func (p usersRepo) Get(ctx context.Context, params map[string]string) (*entity.U
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "get"))
 	}
+
+	println("\n",query)
 	if err = p.db.QueryRow(ctx, query, args...).Scan(
 		&users.GUID,
 		&users.FullName,
@@ -121,7 +126,6 @@ func (p usersRepo) List(ctx context.Context, limit, offset uint64, filter map[st
 	if limit != 0 {
 		queryBuilder = queryBuilder.Limit(limit).Offset(offset)
 	}
-	fmt.Println(filter)
 	for key, value := range filter {
 		if key == "type_id" || key == "lang" || key == "status" {
 			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
@@ -172,7 +176,7 @@ func (p usersRepo) Delete(ctx context.Context, guid string) error {
 
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).
-		Where(p.db.Sq.Equal("guid", guid)).
+		Where(p.db.Sq.Equal("id", guid)).
 		ToSql()
 	if err != nil {
 		return p.db.ErrSQLBuild(err, p.tableName+" delete")

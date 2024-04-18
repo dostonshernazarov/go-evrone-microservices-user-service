@@ -18,15 +18,15 @@ func (u *BaseUseCase) Error(msg string, err error) error {
 }
 
 func (u *BaseUseCase) beforeRequest(guid *string, createdAt *time.Time, updatedAt *time.Time) {
-	if guid != nil {
+	if guid == nil {
 		*guid = uuid.New().String() 
 	}
 
-	if createdAt != nil {
+	if createdAt == nil {
 		*createdAt = time.Now().UTC()
 	}
 
-	if updatedAt != nil {
+	if updatedAt == nil {
 		*updatedAt = time.Now().UTC()
 	}
 }
