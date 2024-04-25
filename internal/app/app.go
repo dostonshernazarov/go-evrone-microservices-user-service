@@ -4,16 +4,16 @@ import (
 	"fmt"
 	pb "github/user_service_evrone_microservces/genproto/user_proto"
 	grpc_server "github/user_service_evrone_microservces/internal/delivery/grpc/server"
-	"github/user_service_evrone_microservces/internal/infrastructure/grpc_service_clients"
-	"github/user_service_evrone_microservces/internal/pkg/config"
 	clean_grpc "github/user_service_evrone_microservces/internal/delivery/grpc/services"
-	"github/user_service_evrone_microservces/internal/pkg/logger"
+	"github/user_service_evrone_microservces/internal/infrastructure/grpc_service_clients"
 	"github/user_service_evrone_microservces/internal/infrastructure/kafka"
-	"github/user_service_evrone_microservces/internal/usecase"
+	"github/user_service_evrone_microservces/internal/pkg/config"
+	"github/user_service_evrone_microservces/internal/pkg/logger"
+	"github/user_service_evrone_microservces/internal/pkg/otlp"
 	"github/user_service_evrone_microservces/internal/pkg/postgres"
+	"github/user_service_evrone_microservces/internal/usecase"
 	"github/user_service_evrone_microservces/internal/usecase/event"
 	"time"
-
 
 	repo "github/user_service_evrone_microservces/internal/infrastructure/repository/postgresql"
 
@@ -47,10 +47,10 @@ func NewApp(cfg *config.Config) (*App, error) {
 	kafkaConsumer := kafka.NewConsumer(logger)
 
 	// otlp collector initialization
-	// shutdownOTLP, err := otlp.InitOTLPProvider(cfg)
-	// if err != nil {
-	// 	return nil, err
-	// }
+	shutdownOTLP, err := otlp.InitOTLPProvider(cfg)
+	if err != nil {
+		return nil, err
+	}
 
 	// init db
 	db, err := postgres.New(cfg)
@@ -80,7 +80,7 @@ func NewApp(cfg *config.Config) (*App, error) {
 		Logger:     logger,
 		DB:         db,
 		GrpcServer: grpcServer,
-		// ShutdownOTLP:   shutdownOTLP,
+		ShutdownOTLP:   shutdownOTLP,
 		BrokerProducer: kafkaProducer,
 		BrokerConsumer: kafkaConsumer,
 	}, nil

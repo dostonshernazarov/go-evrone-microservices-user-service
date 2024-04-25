@@ -1,9 +1,9 @@
 package otlp
 
 import (
-	"github/user_service_evrone_microservces/internal/pkg/config"
 	"context"
 	"fmt"
+	"github/user_service_evrone_microservces/internal/pkg/config"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"

@@ -18,7 +18,7 @@ func (u *BaseUseCase) Error(msg string, err error) error {
 }
 
 func (u *BaseUseCase) beforeRequest(guid *string, createdAt *time.Time, updatedAt *time.Time) {
-	if guid == nil {
+	if guid != nil {
 		*guid = uuid.New().String() 
 	}
 
