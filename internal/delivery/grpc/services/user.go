@@ -2,12 +2,14 @@ package services
 
 import (
 	"context"
-	"time"
 	userproto "github/user_service_evrone_microservces/genproto/user_proto"
 	"github/user_service_evrone_microservces/internal/entity"
+	"github/user_service_evrone_microservces/internal/pkg/otlp"
 	"github/user_service_evrone_microservces/internal/usecase"
 	"github/user_service_evrone_microservces/internal/usecase/event"
+	"time"
 
+	"go.opentelemetry.io/otel/attribute"
 	"go.uber.org/zap"
 )
 
@@ -26,6 +28,13 @@ func NewRPC(logger *zap.Logger, userUsecase usecase.Users, brokerProducer event.
 }
 
 func (s userRPC) Create(ctx context.Context, in *userproto.User) (*userproto.UserRes, error) {
+	//AddAtribute in jeager
+	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+
 	guid, err := s.userUsecase.Create(ctx, &entity.Users{
 		GUID:      in.Id,
 		FullName: in.FullName,
@@ -94,6 +103,12 @@ func (s userRPC) DeleteUserByID(ctx context.Context, in *userproto.IdRequest) (*
 }
 
 func (s userRPC) GetUserByID(ctx context.Context, in *userproto.IdRequest) (*userproto.UserRes, error) {
+	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "Create")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+
 	user, err := s.userUsecase.Get(ctx, map[string]string{
 		"id": in.Id,
 	})

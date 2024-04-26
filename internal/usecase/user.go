@@ -13,8 +13,8 @@ import (
 
 
 const (
-	serviceNameUsers = "contentService"
-	spanNameUsers    = "contentUsecase"
+	serviceNameUsers = "userService"
+	spanNameUsers    = "userUsecase"
 )
 
 type Users interface {
