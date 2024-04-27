@@ -1060,3 +1060,258 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-04-26T15:26:14.825+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T15:26:14+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:38854", "grpc.code": "OK", "grpc.time_ms": 7.221}
 2024-04-26T15:26:50.569+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T15:26:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetUserByID", "peer.address": "127.0.0.1:43410", "grpc.code": "OK", "grpc.time_ms": 9.088}
 2024-04-26T15:27:35.798+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T19:01:37.267+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T19:02:35.631+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:02:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:47844", "grpc.code": "OK", "grpc.time_ms": 16.384}
+2024-04-26T19:03:02.694+0500	ERROR	services/user.go:51	object already exist
+github/user_service_evrone_microservces/internal/delivery/grpc/services.userRPC.Create
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/services/user.go:51
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler.func1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1132
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:34
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:03:02.694+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-26T19:03:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:34962", "error": "object already exist", "grpc.code": "Unknown", "grpc.time_ms": 7.845}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:03:10.889+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:03:10+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:37816", "grpc.code": "OK", "grpc.time_ms": 3.95}
+2024-04-26T19:03:23.166+0500	ERROR	services/user.go:51	object already exist
+github/user_service_evrone_microservces/internal/delivery/grpc/services.userRPC.Create
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/services/user.go:51
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler.func1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1132
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:34
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:03:23.166+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-26T19:03:23+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:51006", "error": "object already exist", "grpc.code": "Unknown", "grpc.time_ms": 2.688}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:09:58.818+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T19:11:22.914+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T19:12:39.581+0500	ERROR	services/user.go:51	object already exist
+github/user_service_evrone_microservces/internal/delivery/grpc/services.userRPC.Create
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/services/user.go:51
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler.func1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1132
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:34
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:12:39.582+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-26T19:12:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:40648", "error": "object already exist", "grpc.code": "Unknown", "grpc.time_ms": 2.374}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:13:07.238+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:13:07+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:54194", "grpc.code": "OK", "grpc.time_ms": 7.082}
+2024-04-26T19:13:37.878+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:13:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetUserByID", "peer.address": "127.0.0.1:37794", "grpc.code": "OK", "grpc.time_ms": 6.182}
+2024-04-26T19:14:17.888+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T19:29:39.925+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T19:30:07.094+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:30:07+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:60288", "grpc.code": "OK", "grpc.time_ms": 7.4}
+2024-04-26T19:35:19.113+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:35:19+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:33360", "grpc.code": "OK", "grpc.time_ms": 5.112}
+2024-04-26T19:39:29.175+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T19:39:39.677+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T19:39:53.461+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:39:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:43652", "grpc.code": "OK", "grpc.time_ms": 7.51}
+2024-04-26T19:40:07.933+0500	ERROR	services/user.go:51	object already exist
+github/user_service_evrone_microservces/internal/delivery/grpc/services.userRPC.Create
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/services/user.go:51
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler.func1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1132
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:34
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:40:07.934+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-26T19:40:07+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:56078", "error": "object already exist", "grpc.code": "Unknown", "grpc.time_ms": 1.474}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+github/user_service_evrone_microservces/internal/app.NewApp.ChainUnaryServer.func5
+	/home/doston/project/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:16
+github/user_service_evrone_microservces/internal/app.NewApp.UnaryInterceptor.func7
+	/home/doston/project/go/src/github/user_service_evrone_microservces/internal/delivery/grpc/server/middleware.go:23
+github/user_service_evrone_microservces/genproto/user_proto._UserService_Create_Handler
+	/home/doston/project/go/src/github/user_service_evrone_microservces/genproto/user_proto/user.pb.go:1134
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/doston/project/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-26T19:40:42.357+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T19:40:42+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetUserByID", "peer.address": "127.0.0.1:49852", "grpc.code": "OK", "grpc.time_ms": 3.57}
+2024-04-26T19:40:59.304+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T21:14:57.488+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T21:16:09.679+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:16:09+05:00", "grpc.request.deadline": "2024-04-26T21:16:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:38640", "grpc.code": "OK", "grpc.time_ms": 2.038}
+2024-04-26T21:20:47.790+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:20:47+05:00", "grpc.request.deadline": "2024-04-26T21:21:17+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:39666", "grpc.code": "OK", "grpc.time_ms": 0.515}
+2024-04-26T21:21:41.657+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T21:22:00.497+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T21:22:13.192+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:22:13+05:00", "grpc.request.deadline": "2024-04-26T21:22:43+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:34154", "grpc.code": "OK", "grpc.time_ms": 1.632}
+2024-04-26T21:31:20.822+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:31:20+05:00", "grpc.request.deadline": "2024-04-26T21:31:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:51844", "grpc.code": "OK", "grpc.time_ms": 3.252}
+2024-04-26T21:31:46.546+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-26T21:33:16.367+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T21:34:38.082+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:34:38+05:00", "grpc.request.deadline": "2024-04-26T21:35:08+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:58814", "grpc.code": "OK", "grpc.time_ms": 1.903}
+2024-04-26T21:39:05.598+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-27T10:22:37.744+0500	INFO	app/app.go:112	gRPC Server Listening	{"url": ":50025"}
+2024-04-27T10:23:15.156+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-27T10:23:15+05:00", "grpc.request.deadline": "2024-04-27T10:23:45+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:36892", "grpc.code": "OK", "grpc.time_ms": 4.764}
+2024-04-27T10:25:05.699+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-27T10:25:05+05:00", "grpc.request.deadline": "2024-04-27T10:25:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user.UserService", "grpc.method": "GetAllUsers", "peer.address": "127.0.0.1:48908", "grpc.code": "OK", "grpc.time_ms": 0.901}
+2024-04-27T10:26:04.121+0500	INFO	app/main.go:36	Conten service stops !

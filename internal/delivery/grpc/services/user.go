@@ -95,6 +95,12 @@ func (s userRPC) Create(ctx context.Context, in *userproto.User) (*userproto.Use
 // }
 
 func (s userRPC) DeleteUserByID(ctx context.Context, in *userproto.IdRequest) (*userproto.DeleteUserByIDRespons, error) {
+	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "Delete")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+
 	if err := s.userUsecase.Delete(ctx, in.Id); err != nil {
 		s.logger.Error(err.Error())
 		return nil, err
@@ -103,7 +109,7 @@ func (s userRPC) DeleteUserByID(ctx context.Context, in *userproto.IdRequest) (*
 }
 
 func (s userRPC) GetUserByID(ctx context.Context, in *userproto.IdRequest) (*userproto.UserRes, error) {
-	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "Create")
+	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "Get")
 	span.SetAttributes(
 		attribute.Key("id").String(in.Id),
 	)
@@ -132,6 +138,10 @@ func (s userRPC) GetUserByID(ctx context.Context, in *userproto.IdRequest) (*use
 }
 
 func (s userRPC) GetAllUsers(ctx context.Context, in *userproto.GetAllUsersRequest) (*userproto.GetAllUsersRespons, error) {
+	ctx, span := otlp.Start(ctx, "user_grpc_delivery", "List")
+	
+	defer span.End()
+
 	offset := in.Limit * (in.Page - 1)
 	users, err := s.userUsecase.List(ctx, uint64(in.Limit), uint64(offset), map[string]string{})
 	if err != nil {
