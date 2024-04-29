@@ -32,7 +32,7 @@ type Config struct {
 	Kafka struct {
 		Address []string
 		Topic   struct {
-			InvestorCreate string
+			UserCreateTopic string
 		}
 	}
 }
@@ -60,8 +60,8 @@ func New() *Config {
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	// kafka configuration
-	config.Kafka.Address = strings.Split(getEnv("KAFKA_ADDRESS", "localhost:29092"), ",")
-	config.Kafka.Topic.InvestorCreate = getEnv("KAFKA_TOPIC_INVESTOR_CREATE", "investor.created")
+	config.Kafka.Address = strings.Split(getEnv("KAFKA_ADDRESS", "localhost:9092"), ",")
+	config.Kafka.Topic.UserCreateTopic = getEnv("KAFKA_USER_CREATE", "user.create.api")
 
 	return &config
 }

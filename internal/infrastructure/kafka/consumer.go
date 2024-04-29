@@ -1,11 +1,12 @@
 package kafka
 
-
 import (
 	// "github/user_service_evrone_microservces/internal/pkg/otlp"
-	"github/user_service_evrone_microservces/internal/usecase/event"
 	"context"
-	// "errors"
+	"errors"
+	"fmt"
+	"github/user_service_evrone_microservces/internal/usecase/event"
+
 	// "fmt"
 
 	"github.com/segmentio/kafka-go"
@@ -57,6 +58,33 @@ func (c *consumer) Close() {
 	}
 }
 
+
+func getTraceAndSpanId(msg kafka.Message) (string, string, error) {
+	var (
+		spanId, traceId string
+	)
+
+	for _, header := range msg.Headers {
+		switch header.Key {
+		case "trace_id":
+			traceId = string(header.Value)
+		case "span_id":
+			spanId = string(header.Value)
+		default:
+			return "", "", errors.New(fmt.Sprintf("unknown header key: %s", header.Key))
+		}
+	}
+
+	if len(traceId) == 0 {
+		return "", "", errors.New("missing trace_id field in kafka message header")
+	}
+
+	if len(spanId) == 0 {
+		return "", "", errors.New("missing span_id field in kafka message header")
+	}
+
+	return traceId, spanId, nil
+}
 
 func runReader(r *kafka.Reader, consumerConfig event.ConsumerConfig, logger *zap.Logger) {
 	var (

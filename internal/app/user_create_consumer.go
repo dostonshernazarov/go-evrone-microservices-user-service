@@ -21,7 +21,7 @@ type UserCreateConsumerCLI struct {
 	BrokerConsumer event.BrokerConsumer
 }
 
-func NewUserCreateConsumerCLI(config *config.Config, logger *zap.Logger, db *postgres.PostgresDB, brokerConsumer event.BrokerConsumer) (*UserCreateConsumerCLI, error) {
+func NewUserConsumer(config *config.Config) (*UserCreateConsumerCLI, error) {
 	logger, err := logPkg.New(config.LogLevel, config.Environment, config.APP+"_cli"+".log")
 	if err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func NewUserCreateConsumerCLI(config *config.Config, logger *zap.Logger, db *pos
 
 	consumer := kafka.NewConsumer(logger)
 
-	db, err = postgres.New(config)
+	db, err := postgres.New(config)
 	if err != nil {
 		return nil, err
 	}
